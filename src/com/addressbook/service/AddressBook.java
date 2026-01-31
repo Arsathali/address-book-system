@@ -7,7 +7,7 @@ import com.addressbook.model.ContactPerson;
 
 public class AddressBook {
     
-    private static List<ContactPerson> addressBook = new ArrayList<>();
+    private List<ContactPerson> addressBook = new ArrayList<>();
 
     //Adding contact to addressBook
     public void addContact(ContactPerson person){

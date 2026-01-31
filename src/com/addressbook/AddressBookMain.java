@@ -3,54 +3,65 @@ package com.addressbook;
 import java.util.Scanner;
 
 import com.addressbook.model.ContactPerson;
+import com.addressbook.repository.AddressBookSystem;
 import com.addressbook.service.AddressBook;
 
 public class AddressBookMain {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static AddressBook addressBook = new AddressBook();
-
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Address Book Program....!!!");
+
+        System.out.println("Welcome to Address Book Program.");
         System.out.println();
 
-        int choice;
+        AddressBookSystem addressBookSystem = new AddressBookSystem();
+        char addMore;
         do{
-            System.out.println("1.Add Contact");
-            System.out.println("2.Edit the Contact");
-            System.out.println("3.Delete the Contact");
-            System.out.println("4.Exit");
+       
+            System.out.println("Enter the Addresss Book Name");
+            String bookName = scanner.nextLine();
+            addressBookSystem.addAddressBook(bookName);
+            AddressBook addressBook = addressBookSystem.getAddressBook(bookName);
 
-            System.out.println();
-            System.out.println("Enter Your Choice");
-            choice = scanner.nextInt();
-            scanner.nextLine();
-            
-            switch (choice) {
+            int choice;
+                do{
+                    System.out.println("1.Add Contact to "+bookName);
+                    System.out.println("2.Edit the Contact");
+                    System.out.println("3.Delete the Contact");
+                    System.out.println("4.Exit");
 
-                    case 1:
-                        addContact();
-                        break;
-                    case 2:
-                        editContact();
-                        break;
-                    case 3:
-                        deleteContact();
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        break;
-            }
+                    System.out.println();
+                    System.out.println("Enter Your Choice");
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    switch (choice) {
 
-        }while(choice != 4);
+                            case 1:
+                                addContact(addressBook);
+                                break;
+                            case 2:
+                                editContact(addressBook);
+                                break;
+                            case 3:
+                                deleteContact(addressBook);
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                break;
+                    }
 
+                }while(choice != 4);
 
-        
+                System.out.println("Do you want to add another Address Book? (Y/N)");
+                addMore = scanner.nextLine().charAt(0);
+
+        }while(addMore == 'Y' || addMore == 'y');
     }
 
-    private static void deleteContact() {
+    private static void deleteContact(AddressBook addressBook) {
         
         System.out.println("Enter First Name of contact to Delete:");
         String nameToDelete = scanner.nextLine();
@@ -65,7 +76,7 @@ public class AddressBookMain {
 
     }
 
-    private static void editContact() {
+    private static void editContact(AddressBook addressBook) {
         
         System.out.println("Enter First Name of contact to edit:");
         String nameToEdit = scanner.nextLine();
@@ -101,7 +112,7 @@ public class AddressBookMain {
     }
 
     //adding contact
-    private static void addContact(){
+    private static void addContact(AddressBook addressBook){
         
         System.out.println("Add a ContactPerson:");
         System.out.println();
