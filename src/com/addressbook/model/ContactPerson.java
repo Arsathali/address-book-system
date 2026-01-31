@@ -7,12 +7,12 @@ public class ContactPerson {
     private String address;
     private String city;
     private String state;
-    private int zip;
-    private int phoneNumber;
+    private String zip;
+    private String phoneNumber;
     private String email;
 
-    public ContactPerson(String firstName, String lastName, String address, String city, String state, int zip,
-            int phoneNumber, String email) {
+    public ContactPerson(String firstName, String lastName, String address, String city, String state, String zip,
+            String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -52,16 +52,16 @@ public class ContactPerson {
     public void setState(String state) {
         this.state = state;
     }
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
-    public void setZip(int zip) {
+    public void setZip (String zip) {
         this.zip = zip;
     }
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getEmail() {

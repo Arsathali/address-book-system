@@ -14,5 +14,23 @@ public class AddressBook {
 
         addressBook.add(person);
     }
+
+    //Edit the contact In addressBook
+    public boolean editContact(String fName,ContactPerson updatedData){
+
+        for(ContactPerson person : addressBook){
+
+            if(fName.equalsIgnoreCase(person.getFirstName())){
+                person.setAddress(updatedData.getAddress());
+                person.setCity(updatedData.getCity());
+                person.setState(updatedData.getState());
+                person.setZip(updatedData.getZip());
+                person.setPhoneNumber(updatedData.getPhoneNumber());
+                person.setEmail(updatedData.getEmail());
+                return true;
+            }
+        }
+        return false;
+    }
     
 }
