@@ -51,8 +51,18 @@ public class AddressBookMain {
     }
 
     private static void deleteContact() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteContact'");
+        
+        System.out.println("Enter First Name of contact to Delete:");
+        String nameToDelete = scanner.nextLine();
+
+        boolean isDeleted = addressBook.deleteContact(nameToDelete);
+
+        if (isDeleted) {
+            System.out.println("Contact Deleted successfully.");
+        } else {
+            System.out.println("Contact not found.");
+        }
+
     }
 
     private static void editContact() {
@@ -93,31 +103,31 @@ public class AddressBookMain {
     //adding contact
     private static void addContact(){
         
-        System.out.println("Add a ContactPerson");
+        System.out.println("Add a ContactPerson:");
         System.out.println();
 
-        System.out.println("Enter the firstName");
+        System.out.println("Enter the firstName: ");
         String fName = scanner.nextLine();
 
-        System.out.println("Enter the LastName");
+        System.out.println("Enter the LastName: ");
         String lName = scanner.nextLine();
 
-        System.out.println("Enter the Address");
+        System.out.println("Enter the Address: ");
         String address = scanner.nextLine();
 
-        System.out.println("Enter the City");
+        System.out.println("Enter the City: ");
         String city = scanner.nextLine();
 
-        System.out.println("Enter the State");
+        System.out.println("Enter the State: ");
         String state = scanner.nextLine();
 
-        System.out.println("Enter the Zip");
+        System.out.println("Enter the Zip: ");
         String zip = scanner.nextLine();
 
-        System.out.println("Enter the Phone Number");
+        System.out.println("Enter the Phone Number: ");
         String phoneNumber = scanner.nextLine();
 
-        System.out.println("Enter the E-Mail");
+        System.out.println("Enter the E-Mail: ");
         String email = scanner.nextLine();
         
         //creating contact
