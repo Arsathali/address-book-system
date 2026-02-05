@@ -55,4 +55,21 @@ public class AddressBook {
         }
         return false;
     }
+
+    //sorted contactpersons from the address book
+    public List<ContactPerson> getContactsSortedByName(){
+
+        return addressBook.stream()
+                            .sorted(
+                                (p1, p2) -> {
+                                        int result = p1.getFirstName().compareToIgnoreCase(p2.getFirstName());
+                                        if (result != 0) {
+                                            return result;
+                                        }
+                                        return p1.getLastName()
+                                                .compareToIgnoreCase(p2.getLastName());
+                                    }
+                            )
+                            .toList();
+    }
 }

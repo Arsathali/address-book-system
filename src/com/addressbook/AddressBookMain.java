@@ -30,7 +30,8 @@ public class AddressBookMain {
                 System.out.println("5.Search by State");
                 System.out.println("6.Count Persons in city");
                 System.out.println("7.Count Persons  in state");
-                System.out.println("8.Exit");
+                System.out.println("8.Sort And Display");
+                System.out.println("9.Exit");
                 System.out.print("Enter choice: ");
 
                 choice = scanner.nextInt();
@@ -44,11 +45,12 @@ public class AddressBookMain {
                     case 5 -> searchByState(system);
                     case 6 -> countByCity(system);
                     case 7 -> countByState(system);
-                    case 8 -> { }
+                    case 8 -> sortAndDisplay(addressBook);
+                    case 9 -> { }
                     default -> System.out.println("Invalid choice");
                 }
 
-            } while (choice != 8);
+            } while (choice != 9);
 
             System.out.print("Add another Address Book? (Y/N): ");
             addMore = scanner.nextLine().charAt(0);
@@ -150,5 +152,11 @@ public class AddressBookMain {
         System.out.println("Persons in "+state +" is: " + statePersonsCount);
 
     }
+
+    private static void sortAndDisplay(AddressBook book) {
+        book.getContactsSortedByName()
+                    .forEach(System.out::println);
+    }
+
 
 }
