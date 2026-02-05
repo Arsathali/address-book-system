@@ -28,7 +28,9 @@ public class AddressBookMain {
                 System.out.println("3.Delete Contact");
                 System.out.println("4.Search by City");
                 System.out.println("5.Search by State");
-                System.out.println("6.Exit");
+                System.out.println("6.Count Persons in city");
+                System.out.println("7.Count Persons  in state");
+                System.out.println("8.Exit");
                 System.out.print("Enter choice: ");
 
                 choice = scanner.nextInt();
@@ -40,11 +42,13 @@ public class AddressBookMain {
                     case 3 -> deleteContact(addressBook);
                     case 4 -> searchByCity(system);
                     case 5 -> searchByState(system);
-                    case 6 -> { }
+                    case 6 -> countByCity(system);
+                    case 7 -> countByState(system);
+                    case 8 -> { }
                     default -> System.out.println("Invalid choice");
                 }
 
-            } while (choice != 6);
+            } while (choice != 8);
 
             System.out.print("Add another Address Book? (Y/N): ");
             addMore = scanner.nextLine().charAt(0);
@@ -52,6 +56,7 @@ public class AddressBookMain {
         } while (addMore == 'Y' || addMore == 'y');
     }
 
+  
     private static void addContact(AddressBook addressBook,AddressBookSystem system) {
         System.out.print("First Name: ");
         String f = scanner.nextLine();
@@ -129,4 +134,21 @@ public class AddressBookMain {
                         p.getFirstName() + " " + p.getLastName()
                                 + " | " + p.getCity() + " | " + p.getState()));
     }
+
+      private static void countByCity(AddressBookSystem system) {
+      
+        System.out.print("Enter City: ");
+        String city = scanner.nextLine();
+        long cityPersonsCount = system.countPersonsByCity(city);
+        System.out.println("Persons in "+city +" is: " + cityPersonsCount);
+    }
+
+    private static void countByState(AddressBookSystem system) {
+        System.out.print("Enter State: ");
+        String state = scanner.nextLine();
+        long statePersonsCount = system.countPersonsByState(state);
+        System.out.println("Persons in "+state +" is: " + statePersonsCount);
+
+    }
+
 }

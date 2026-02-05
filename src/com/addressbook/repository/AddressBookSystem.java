@@ -54,5 +54,24 @@ public class AddressBookSystem {
                 .toList();
     }
 
+    //count persons by city
+    public long countPersonsByCity(String city){
+
+       return cityPersonMap
+                .getOrDefault(city, List.of())
+                .stream()
+                .count();
+    }
+
+    //count persons by state
+    public long countPersonsByState(String state){
+        
+       return statePersonMap
+                .getOrDefault(state, List.of())
+                .stream()
+                .count();
+    }
+
+
 
 }
