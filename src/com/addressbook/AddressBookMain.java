@@ -56,7 +56,7 @@ public class AddressBookMain {
                     default -> System.out.println("Invalid choice");
                 }
 
-            } while (choice != 9);
+            } while (choice != 12);
 
             System.out.print("Add another Address Book? (Y/N): ");
             addMore = scanner.nextLine().charAt(0);
