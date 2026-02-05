@@ -2,8 +2,8 @@ package com.addressbook.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+
+
 
 import com.addressbook.model.ContactPerson;
 
@@ -71,5 +71,26 @@ public class AddressBook {
                                     }
                             )
                             .toList();
+    }
+
+      // Sort by City
+    public List<ContactPerson> sortByCity() {
+        return addressBook.stream()
+                .sorted((p1, p2) -> p1.getCity().compareToIgnoreCase(p2.getCity()))
+                .toList();
+    }
+
+    // Sort by State
+    public List<ContactPerson> sortByState() {
+        return addressBook.stream()
+                .sorted((p1, p2) -> p1.getState().compareToIgnoreCase(p2.getState()))
+                .toList();
+    }
+
+    // Sort by Zip
+    public List<ContactPerson> sortByZip() {
+        return addressBook.stream()
+                .sorted((p1,p2) -> p1.getZip().compareToIgnoreCase(p2.getZip()))
+                .toList();
     }
 }

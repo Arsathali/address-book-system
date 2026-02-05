@@ -31,7 +31,10 @@ public class AddressBookMain {
                 System.out.println("6.Count Persons in city");
                 System.out.println("7.Count Persons  in state");
                 System.out.println("8.Sort And Display");
-                System.out.println("9.Exit");
+                System.out.println("9.Sort by city");
+                System.out.println("10.Sort And state");
+                System.out.println("11.Sort And zip code");
+                System.out.println("12.Exit");
                 System.out.print("Enter choice: ");
 
                 choice = scanner.nextInt();
@@ -46,7 +49,10 @@ public class AddressBookMain {
                     case 6 -> countByCity(system);
                     case 7 -> countByState(system);
                     case 8 -> sortAndDisplay(addressBook);
-                    case 9 -> { }
+                    case 9 -> sortByCity(addressBook);
+                    case 10-> sortByState(addressBook);
+                    case 11-> sortByZip(addressBook);
+                    case 12-> { }
                     default -> System.out.println("Invalid choice");
                 }
 
@@ -158,5 +164,16 @@ public class AddressBookMain {
                     .forEach(System.out::println);
     }
 
+    private static void sortByCity(AddressBook addressBook) {
+        addressBook.sortByCity().forEach(System.out::println);
+    }
+
+    private static void sortByState(AddressBook addressBook) {
+        addressBook.sortByState().forEach(System.out::println);
+    }
+
+    private static void sortByZip(AddressBook addressBook) {
+        addressBook.sortByZip().forEach(System.out::println);
+    }
 
 }
