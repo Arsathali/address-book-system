@@ -9,6 +9,9 @@ public class AddressBookSystem {
     
     private Map<String,AddressBook> addressBookSystem = new HashMap<>();
 
+    private Map<String,List<ContactPerson>> cityPersonMap = new HashMap<>();
+    private Map<String, List<ContactPerson>> statePersonMap = new HashMap<>();
+
     public void addAddressBook(String name) {
         if (addressBookSystem.containsKey(name)) {
             System.out.println("Address Book already exists");
@@ -22,24 +25,33 @@ public class AddressBookSystem {
         return addressBookSystem.get(name);
     }
 
+    //add person to city and state dictionary
+    public void addPersonToDictionary(ContactPerson person){
+
+        cityPersonMap
+            .computeIfAbsent(person.getCity(), k-> new ArrayList<>())
+            .add(person);
+
+        statePersonMap
+                .computeIfAbsent(person.getState(), k -> new ArrayList<>())
+                .add(person);
+    }
     
     public List<ContactPerson> searchPersonsByCity(String city){
 
-       return addressBookSystem.values()
-                                .stream()
-                                .flatMap(book -> book.getAllContacts().stream())
-                                .filter(person -> person.getCity().equalsIgnoreCase(city))
-                                .toList();
+       return cityPersonMap
+                .getOrDefault(city, List.of())
+                .stream()
+                .toList();
     }
 
 
     public List<ContactPerson> searchPersonsByState(String state){
 
-        return addressBookSystem.values()
-                                .stream()
-                                .flatMap(book -> book.getAllContacts().stream())
-                                .filter(person -> person.getState().equalsIgnoreCase(state))
-                                .toList();
+        return statePersonMap
+                .getOrDefault(state, List.of())
+                .stream()
+                .toList();
     }
 
 

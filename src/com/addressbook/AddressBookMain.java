@@ -35,7 +35,7 @@ public class AddressBookMain {
                 scanner.nextLine();
 
                 switch (choice) {
-                    case 1 -> addContact(addressBook);
+                    case 1 -> addContact(addressBook,system);
                     case 2 -> editContact(addressBook);
                     case 3 -> deleteContact(addressBook);
                     case 4 -> searchByCity(system);
@@ -52,7 +52,7 @@ public class AddressBookMain {
         } while (addMore == 'Y' || addMore == 'y');
     }
 
-    private static void addContact(AddressBook addressBook) {
+    private static void addContact(AddressBook addressBook,AddressBookSystem system) {
         System.out.print("First Name: ");
         String f = scanner.nextLine();
         System.out.print("Last Name: ");
@@ -70,12 +70,15 @@ public class AddressBookMain {
         System.out.print("Email: ");
         String e = scanner.nextLine();
 
-        boolean added = addressBook.addContact(
-                new ContactPerson(f, l, a, c, s, z, p, e));
+        ContactPerson contactPerson = new ContactPerson(f, l, a, c, s, z, p, e);
+        boolean added = addressBook.addContact(contactPerson);
 
-        System.out.println(added
-                ? "Contact Added Successfully"
-                : "Duplicate Contact. Entry not allowed.");
+        if(added){
+            system.addPersonToDictionary(contactPerson);
+            System.out.println("Contact Added Successfully");
+        }else{
+            System.out.println("Duplicate Contact. Entry not allowed.");
+        }
     }
 
     private static void editContact(AddressBook addressBook) {

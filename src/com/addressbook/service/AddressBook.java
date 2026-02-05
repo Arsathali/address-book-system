@@ -21,7 +21,6 @@ public class AddressBook {
         if(isDuplicate){
             return false;
         }
-
         addressBook.add(person);
         return true;
     }
@@ -55,10 +54,5 @@ public class AddressBook {
             }
         }
         return false;
-    }
-
-    //getting all Contacts 
-    public List<ContactPerson> getAllContacts(){
-        return addressBook;
     }
 }
