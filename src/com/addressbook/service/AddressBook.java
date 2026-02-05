@@ -2,17 +2,28 @@ package com.addressbook.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import com.addressbook.model.ContactPerson;
 
 public class AddressBook {
     
     private List<ContactPerson> addressBook = new ArrayList<>();
+    
 
     //Adding contact to addressBook
-    public void addContact(ContactPerson person){
+    public boolean addContact(ContactPerson person){
+
+        //stream logic
+        boolean isDuplicate = addressBook.stream().anyMatch(existingPerson -> existingPerson.equals(person));
+
+        if(isDuplicate){
+            return false;
+        }
 
         addressBook.add(person);
+        return true;
     }
 
     //Edit the contact In addressBook

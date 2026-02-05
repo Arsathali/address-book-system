@@ -140,10 +140,16 @@ public class AddressBookMain {
 
         System.out.println("Enter the E-Mail: ");
         String email = scanner.nextLine();
-        
+
         //creating contact
         ContactPerson person = new ContactPerson(fName, lName, address, city, state, zip, phoneNumber, email);
-        addressBook.addContact(person);
-        System.out.println("Contact Added Successfully");
+        boolean isAdded = addressBook.addContact(person);
+
+        if (isAdded) {
+            System.out.println("Contact Added Successfully");
+        } else {
+            System.out.println("Duplicate Contact. Entry not allowed.");
+        }
+                
     }
 }
