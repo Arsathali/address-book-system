@@ -56,4 +56,9 @@ public class AddressBook {
         }
         return false;
     }
+
+    //getting all Contacts 
+    public List<ContactPerson> getAllContacts(){
+        return addressBook;
+    }
 }

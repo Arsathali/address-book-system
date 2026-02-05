@@ -1,6 +1,9 @@
 package com.addressbook.repository;
+import com.addressbook.model.ContactPerson;
 import com.addressbook.service.AddressBook;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class AddressBookSystem {
     
@@ -18,4 +21,26 @@ public class AddressBookSystem {
     public AddressBook getAddressBook(String name) {
         return addressBookSystem.get(name);
     }
+
+    
+    public List<ContactPerson> searchPersonsByCity(String city){
+
+       return addressBookSystem.values()
+                                .stream()
+                                .flatMap(book -> book.getAllContacts().stream())
+                                .filter(person -> person.getCity().equalsIgnoreCase(city))
+                                .toList();
+    }
+
+
+    public List<ContactPerson> searchPersonsByState(String state){
+
+        return addressBookSystem.values()
+                                .stream()
+                                .flatMap(book -> book.getAllContacts().stream())
+                                .filter(person -> person.getState().equalsIgnoreCase(state))
+                                .toList();
+    }
+
+
 }
